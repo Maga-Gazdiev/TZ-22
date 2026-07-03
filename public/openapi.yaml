@@ -102,35 +102,51 @@ components:
         title:
           type: string
           maxLength: 255
+          example: Задача1
         description:
           type: string
+          example: Описание задачи
         due_date:
           type: string
           format: date-time
+          example: "2026-07-03T16:00:00"
         create_date:
           type: string
           format: date-time
+          example: "2026-07-03T16:00:00"
         status:
           type: string
           enum: [выполнена, не выполнена]
+          default: не выполнена
         priority:
           type: string
           enum: [низкий, средний, высокий]
+          default: средний
         category:
           type: string
+          example: Работа
     TaskUpdate:
       type: object
       properties:
         title:
           type: string
+          maxLength: 255
+          example: Обновлённая задача
         description:
           type: string
+          example: Новое описание
         due_date:
           type: string
           format: date-time
+          example: "2026-07-03T18:00:00"
         status:
           type: string
+          enum: [выполнена, не выполнена]
+          example: выполнена
         priority:
           type: string
+          enum: [низкий, средний, высокий]
+          example: высокий
         category:
           type: string
+          example: Работа
