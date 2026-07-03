@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Tasks API
+  description: REST API для управления списком задач
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Локальный сервер
+
+paths:
+  /api/tasks:
+    get:
+      summary: Получение списка задач
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+          description: Поиск по названию (Elasticsearch)
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [due_date, created_at]
+          description: Сортировка
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          schema:
+            type: integer
+            default: 10
+      responses:
+        '200':
+          description: Список задач
+    post:
+      summary: Создание задачи
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreate'
+      responses:
+        '201':
+          description: Задача создана
+
+  /api/tasks/{id}:
+    get:
+      summary: Получение задачи по ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Задача
+        '404':
+          description: Не найдена
+    put:
+      summary: Обновление задачи
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdate'
+      responses:
+        '200':
+          description: Обновлено
+    delete:
+      summary: Удаление задачи
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Удалено
+
+components:
+  schemas:
+    TaskCreate:
+      type: object
+      required:
+        - title
+        - due_date
+      properties:
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        due_date:
+          type: string
+          format: date-time
+        create_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [выполнена, не выполнена]
+        priority:
+          type: string
+          enum: [низкий, средний, высокий]
+        category:
+          type: string
+    TaskUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        due_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+        priority:
+          type: string
+        category:
+          type: string
