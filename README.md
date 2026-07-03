@@ -1,5 +1,16 @@
 # Tasks API
 
+## СЕРВИС РАЗВЁРНУТ НА СЕРВЕРЕ
+
+**Сервер:** `45.155.207.173:8090`
+
+| | Ссылка |
+|---|--------|
+| **Swagger UI** | [http://45.155.207.173:8090/api/docs](http://45.155.207.173:8090/api/docs) |
+| **OpenAPI** | [http://45.155.207.173:8090/api/openapi.yaml](http://45.155.207.173:8090/api/openapi.yaml) |
+| **Health check** | [http://45.155.207.173:8090/health](http://45.155.207.173:8090/health) |
+| **API — список задач** | [http://45.155.207.173:8090/api/tasks](http://45.155.207.173:8090/api/tasks) |
+
 REST API для управления списком задач на PHP.
 
 ## Стек
@@ -57,7 +68,7 @@ docker compose up --build
 
 ## Swagger
 
-Документация: `/api/docs`
+Документация: [http://45.155.207.173:8090/api/docs](http://45.155.207.173:8090/api/docs)
 
 ## API
 
@@ -108,7 +119,7 @@ curl "http://localhost:8080/api/tasks?page=1&per_page=5&sort=due_date"
 ### Ручное тестирование
 
 1. **curl** - проверка всех эндпоинтов
-2. **Swagger UI** - `/api/docs`
+2. **Swagger UI** - [http://45.155.207.173:8090/api/docs](http://45.155.207.173:8090/api/docs)
 3. **Postman** - опционально
 
 ### Как тестировал
@@ -123,4 +134,3 @@ curl "http://localhost:8080/api/tasks?page=1&per_page=5&sort=due_date"
 ```bash
 curl http://localhost:8080/health
 ```
-# TZ-22
